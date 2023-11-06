@@ -21,6 +21,8 @@
 		1D6E62132AF8ACEE004F4FEE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */; };
 		1D6E62152AF8ACFE004F4FEE /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */; };
 		1D6E62172AF8AD0A004F4FEE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E62162AF8AD0A004F4FEE /* ProfileViewController.swift */; };
+		1D6E621A2AF8CB54004F4FEE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1D6E62192AF8CB54004F4FEE /* SnapKit */; };
+		1D6E621C2AF90D49004F4FEE /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E621B2AF90D49004F4FEE /* PersonalDataViewController.swift */; };
 		37EF87A93FCDDBD836E029F6 /* Pods_Ozinshe_SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,7 @@
 		1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		1D6E62162AF8AD0A004F4FEE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1D6E621B2AF90D49004F4FEE /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
 		6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ozinshe_SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45145AB690BD6FC14C32341 /* Pods-Ozinshe_SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.release.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.release.xcconfig"; sourceTree = "<group>"; };
 		C873A2D1926B796290AEE81C /* Pods-Ozinshe_SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.debug.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37EF87A93FCDDBD836E029F6 /* Pods_Ozinshe_SnapKit.framework in Frameworks */,
+				1D6E621A2AF8CB54004F4FEE /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +104,7 @@
 				1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */,
 				1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */,
 				1D6E62162AF8AD0A004F4FEE /* ProfileViewController.swift */,
+				1D6E621B2AF90D49004F4FEE /* PersonalDataViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -157,6 +162,9 @@
 			dependencies = (
 			);
 			name = Ozinshe_SnapKit;
+			packageProductDependencies = (
+				1D6E62192AF8CB54004F4FEE /* SnapKit */,
+			);
 			productName = Ozinshe_SnapKit;
 			productReference = 1D6E61EC2AF89ABC004F4FEE /* Ozinshe_SnapKit.app */;
 			productType = "com.apple.product-type.application";
@@ -185,6 +193,9 @@
 				Base,
 			);
 			mainGroup = 1D6E61E32AF89ABC004F4FEE;
+			packageReferences = (
+				1D6E62182AF8CB54004F4FEE /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 1D6E61ED2AF89ABC004F4FEE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +270,7 @@
 			files = (
 				1D6E62132AF8ACEE004F4FEE /* SearchViewController.swift in Sources */,
 				1D6E62112AF8ACE3004F4FEE /* MainPageViewController.swift in Sources */,
+				1D6E621C2AF90D49004F4FEE /* PersonalDataViewController.swift in Sources */,
 				1D6E62152AF8ACFE004F4FEE /* FavoritesViewController.swift in Sources */,
 				1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */,
 				1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */,
@@ -474,6 +486,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D6E62182AF8CB54004F4FEE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D6E62192AF8CB54004F4FEE /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D6E62182AF8CB54004F4FEE /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1D6E61E42AF89ABC004F4FEE /* Project object */;
 }

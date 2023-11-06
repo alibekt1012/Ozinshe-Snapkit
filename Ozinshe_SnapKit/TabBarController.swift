@@ -21,12 +21,14 @@ class TabBarController: UITabBarController {
         let favoritesVC = FavoritesViewController()
         let profileVC = ProfileViewController()
         
+        let profileNavigationVC = UINavigationController(rootViewController: profileVC)
+        
         mainPageVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home"), selectedImage:  UIImage(named: "homeSelected"))
         searchVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "search"), selectedImage: UIImage(named: "searchSelected"))
         favoritesVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "favorites"), selectedImage: UIImage(named: "favoritesSelected"))
-        profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "profile"), selectedImage: UIImage(named: "profileSelected"))
+        profileNavigationVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "profile"), selectedImage: UIImage(named: "profileSelected"))
         
-        setViewControllers([mainPageVC, searchVC, favoritesVC, profileVC], animated: false)
+        setViewControllers([mainPageVC, searchVC, favoritesVC, profileNavigationVC], animated: false)
        
     }
 
