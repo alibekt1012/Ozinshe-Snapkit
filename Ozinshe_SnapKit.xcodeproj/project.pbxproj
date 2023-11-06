@@ -12,6 +12,11 @@
 		1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F32AF89ABC004F4FEE /* ViewController.swift */; };
 		1D6E61F92AF89ABD004F4FEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E61F82AF89ABD004F4FEE /* Assets.xcassets */; };
 		1D6E61FC2AF89ABD004F4FEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E61FA2AF89ABD004F4FEE /* LaunchScreen.storyboard */; };
+		1D6E620A2AF8A66E004F4FEE /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E62062AF8A66E004F4FEE /* SF-Pro-Display-Medium.otf */; };
+		1D6E620B2AF8A66E004F4FEE /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E62072AF8A66E004F4FEE /* SF-Pro-Display-Semibold.otf */; };
+		1D6E620C2AF8A66E004F4FEE /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E62082AF8A66E004F4FEE /* SF-Pro-Display-Regular.otf */; };
+		1D6E620D2AF8A66E004F4FEE /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E62092AF8A66E004F4FEE /* SF-Pro-Display-Bold.otf */; };
+		1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E620E2AF8A7DF004F4FEE /* TabBarController.swift */; };
 		37EF87A93FCDDBD836E029F6 /* Pods_Ozinshe_SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,11 @@
 		1D6E61F82AF89ABD004F4FEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D6E61FB2AF89ABD004F4FEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D6E61FD2AF89ABD004F4FEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D6E62062AF8A66E004F4FEE /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		1D6E62072AF8A66E004F4FEE /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		1D6E62082AF8A66E004F4FEE /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		1D6E62092AF8A66E004F4FEE /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		1D6E620E2AF8A7DF004F4FEE /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ozinshe_SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45145AB690BD6FC14C32341 /* Pods-Ozinshe_SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.release.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.release.xcconfig"; sourceTree = "<group>"; };
 		C873A2D1926B796290AEE81C /* Pods-Ozinshe_SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.debug.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,12 +73,41 @@
 			children = (
 				1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */,
 				1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */,
-				1D6E61F32AF89ABC004F4FEE /* ViewController.swift */,
+				1D6E62032AF8A630004F4FEE /* Controllers */,
+				1D6E62042AF8A637004F4FEE /* Models */,
+				1D6E62052AF8A63D004F4FEE /* Fonts */,
+				1D6E620E2AF8A7DF004F4FEE /* TabBarController.swift */,
 				1D6E61F82AF89ABD004F4FEE /* Assets.xcassets */,
 				1D6E61FA2AF89ABD004F4FEE /* LaunchScreen.storyboard */,
 				1D6E61FD2AF89ABD004F4FEE /* Info.plist */,
 			);
 			path = Ozinshe_SnapKit;
+			sourceTree = "<group>";
+		};
+		1D6E62032AF8A630004F4FEE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1D6E61F32AF89ABC004F4FEE /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1D6E62042AF8A637004F4FEE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1D6E62052AF8A63D004F4FEE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1D6E62092AF8A66E004F4FEE /* SF-Pro-Display-Bold.otf */,
+				1D6E62062AF8A66E004F4FEE /* SF-Pro-Display-Medium.otf */,
+				1D6E62082AF8A66E004F4FEE /* SF-Pro-Display-Regular.otf */,
+				1D6E62072AF8A66E004F4FEE /* SF-Pro-Display-Semibold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		86ADBFF87E08D512AB807219 /* Frameworks */ = {
@@ -85,7 +124,6 @@
 				C873A2D1926B796290AEE81C /* Pods-Ozinshe_SnapKit.debug.xcconfig */,
 				B45145AB690BD6FC14C32341 /* Pods-Ozinshe_SnapKit.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -149,7 +187,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6E620B2AF8A66E004F4FEE /* SF-Pro-Display-Semibold.otf in Resources */,
+				1D6E620A2AF8A66E004F4FEE /* SF-Pro-Display-Medium.otf in Resources */,
+				1D6E620D2AF8A66E004F4FEE /* SF-Pro-Display-Bold.otf in Resources */,
 				1D6E61FC2AF89ABD004F4FEE /* LaunchScreen.storyboard in Resources */,
+				1D6E620C2AF8A66E004F4FEE /* SF-Pro-Display-Regular.otf in Resources */,
 				1D6E61F92AF89ABD004F4FEE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */,
+				1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */,
 				1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */,
 				1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */,
 			);
