@@ -99,6 +99,7 @@
 		1D6E62032AF8A630004F4FEE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1D6E621D2AF9214E004F4FEE /* Profile */,
 				1D6E61F32AF89ABC004F4FEE /* ViewController.swift */,
 				1D6E62102AF8ACE3004F4FEE /* MainPageViewController.swift */,
 				1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */,
@@ -125,6 +126,13 @@
 				1D6E62072AF8A66E004F4FEE /* SF-Pro-Display-Semibold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1D6E621D2AF9214E004F4FEE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		86ADBFF87E08D512AB807219 /* Frameworks */ = {
