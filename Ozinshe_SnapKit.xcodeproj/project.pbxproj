@@ -17,6 +17,10 @@
 		1D6E620C2AF8A66E004F4FEE /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E62082AF8A66E004F4FEE /* SF-Pro-Display-Regular.otf */; };
 		1D6E620D2AF8A66E004F4FEE /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E62092AF8A66E004F4FEE /* SF-Pro-Display-Bold.otf */; };
 		1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E620E2AF8A7DF004F4FEE /* TabBarController.swift */; };
+		1D6E62112AF8ACE3004F4FEE /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E62102AF8ACE3004F4FEE /* MainPageViewController.swift */; };
+		1D6E62132AF8ACEE004F4FEE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */; };
+		1D6E62152AF8ACFE004F4FEE /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */; };
+		1D6E62172AF8AD0A004F4FEE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E62162AF8AD0A004F4FEE /* ProfileViewController.swift */; };
 		37EF87A93FCDDBD836E029F6 /* Pods_Ozinshe_SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +37,10 @@
 		1D6E62082AF8A66E004F4FEE /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		1D6E62092AF8A66E004F4FEE /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		1D6E620E2AF8A7DF004F4FEE /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		1D6E62102AF8ACE3004F4FEE /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		1D6E62162AF8AD0A004F4FEE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ozinshe_SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45145AB690BD6FC14C32341 /* Pods-Ozinshe_SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.release.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.release.xcconfig"; sourceTree = "<group>"; };
 		C873A2D1926B796290AEE81C /* Pods-Ozinshe_SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.debug.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				1D6E61F32AF89ABC004F4FEE /* ViewController.swift */,
+				1D6E62102AF8ACE3004F4FEE /* MainPageViewController.swift */,
+				1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */,
+				1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */,
+				1D6E62162AF8AD0A004F4FEE /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -245,9 +257,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6E62132AF8ACEE004F4FEE /* SearchViewController.swift in Sources */,
+				1D6E62112AF8ACE3004F4FEE /* MainPageViewController.swift in Sources */,
+				1D6E62152AF8ACFE004F4FEE /* FavoritesViewController.swift in Sources */,
 				1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */,
 				1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */,
 				1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */,
+				1D6E62172AF8AD0A004F4FEE /* ProfileViewController.swift in Sources */,
 				1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
