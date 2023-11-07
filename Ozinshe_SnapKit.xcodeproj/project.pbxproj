@@ -104,8 +104,6 @@
 				1D6E62102AF8ACE3004F4FEE /* MainPageViewController.swift */,
 				1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */,
 				1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */,
-				1D6E62162AF8AD0A004F4FEE /* ProfileViewController.swift */,
-				1D6E621B2AF90D49004F4FEE /* PersonalDataViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -131,6 +129,8 @@
 		1D6E621D2AF9214E004F4FEE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				1D6E621B2AF90D49004F4FEE /* PersonalDataViewController.swift */,
+				1D6E62162AF8AD0A004F4FEE /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

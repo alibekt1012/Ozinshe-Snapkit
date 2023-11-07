@@ -239,6 +239,8 @@ class ProfileViewController: UIViewController {
     @objc func personalDataButtonTouched() {
         
         let personalDataVC = PersonalDataViewController()
+        
+        personalDataVC.hidesBottomBarWhenPushed = true
 
         self.navigationController?.pushViewController(personalDataVC, animated: true)
     }
