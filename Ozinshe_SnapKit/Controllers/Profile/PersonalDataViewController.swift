@@ -27,7 +27,7 @@ class PersonalDataViewController: UIViewController {
         let textField = UITextField()
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-        textField.placeholder = "Сіздің атыңыз..."
+        textField.text = "Алмат"
         return textField
         
     }()
@@ -56,7 +56,7 @@ class PersonalDataViewController: UIViewController {
         let textField = UITextField()
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-        textField.placeholder = "Email..."
+        textField.text = "email@email.com"
         return textField
         
     }()
@@ -85,7 +85,7 @@ class PersonalDataViewController: UIViewController {
         let textField = UITextField()
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-        textField.placeholder = "Телефон..."
+        textField.text = "87776665544"
         return textField
         
     }()
@@ -114,7 +114,7 @@ class PersonalDataViewController: UIViewController {
         let textField = UITextField()
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-        textField.placeholder = "Туылған күні..."
+        textField.text = "19 қыркүйек 2004"
         return textField
         
     }()

@@ -8,8 +8,12 @@
 import UIKit
 import SnapKit
 
-class ProfileViewController: UIViewController {
-
+class ProfileViewController: UIViewController, LanguageProtocol {
+    func languageDidChange() {
+        
+    }
+    
+    
     private lazy var avatarImage: UIImageView = {
         
         let image = UIImageView()
@@ -85,7 +89,8 @@ class ProfileViewController: UIViewController {
         languageButton.setTitleColor(UIColor(red: 0.11, green: 0.14, blue: 0.19, alpha: 1), for: .normal)
         languageButton.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         languageButton.contentHorizontalAlignment = .left
-    
+        languageButton.addTarget(self, action: #selector(changeLanguageButtonTouched), for: .touchUpInside)
+        
         var languageLabel = UILabel()
         languageLabel.text = "Қазақша"
         languageLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
@@ -236,13 +241,23 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // Localization
+    
+    
     @objc func personalDataButtonTouched() {
         
         let personalDataVC = PersonalDataViewController()
-        
         personalDataVC.hidesBottomBarWhenPushed = true
-
         self.navigationController?.pushViewController(personalDataVC, animated: true)
+    }
+    
+    @objc func changeLanguageButtonTouched() {
+        
+        let languageVC = LanguageViewController()
+        languageVC.hidesBottomBarWhenPushed = true
+        languageVC.modalPresentationStyle = .overFullScreen
+        present(languageVC, animated: true)
+        
     }
     
     
