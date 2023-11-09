@@ -26,6 +26,8 @@
 		1D6E621F2AFA767C004F4FEE /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E621E2AFA767C004F4FEE /* LanguageViewController.swift */; };
 		1D6E62212AFB4C3E004F4FEE /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E62202AFB4C3E004F4FEE /* LanguageTableViewCell.swift */; };
 		1D6E622F2AFB6FA8004F4FEE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E62312AFB6FA8004F4FEE /* Localizable.strings */; };
+		1D8ADDA12AFCCD35009D434F /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDA02AFCCD35009D434F /* ChangePasswordViewController.swift */; };
+		1D8ADDA42AFCD111009D434F /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDA32AFCD111009D434F /* TextFieldWithPadding.swift */; };
 		37EF87A93FCDDBD836E029F6 /* Pods_Ozinshe_SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		1D6E62302AFB6FA8004F4FEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1D6E62322AFB6FF2004F4FEE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1D6E62332AFB700C004F4FEE /* kk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1D8ADDA02AFCCD35009D434F /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		1D8ADDA32AFCD111009D434F /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
 		6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ozinshe_SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45145AB690BD6FC14C32341 /* Pods-Ozinshe_SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.release.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.release.xcconfig"; sourceTree = "<group>"; };
 		C873A2D1926B796290AEE81C /* Pods-Ozinshe_SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.debug.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 		1D6E61E32AF89ABC004F4FEE = {
 			isa = PBXGroup;
 			children = (
+				1D8ADDA22AFCD0FB009D434F /* Extensions */,
 				1D6E62312AFB6FA8004F4FEE /* Localizable.strings */,
 				1D6E61EE2AF89ABC004F4FEE /* Ozinshe_SnapKit */,
 				1D6E61ED2AF89ABC004F4FEE /* Products */,
@@ -142,8 +147,17 @@
 				1D6E621B2AF90D49004F4FEE /* PersonalDataViewController.swift */,
 				1D6E621E2AFA767C004F4FEE /* LanguageViewController.swift */,
 				1D6E62202AFB4C3E004F4FEE /* LanguageTableViewCell.swift */,
+				1D8ADDA02AFCCD35009D434F /* ChangePasswordViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		1D8ADDA22AFCD0FB009D434F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D8ADDA32AFCD111009D434F /* TextFieldWithPadding.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		86ADBFF87E08D512AB807219 /* Frameworks */ = {
@@ -294,11 +308,13 @@
 				1D6E62132AF8ACEE004F4FEE /* SearchViewController.swift in Sources */,
 				1D6E62112AF8ACE3004F4FEE /* MainPageViewController.swift in Sources */,
 				1D6E621C2AF90D49004F4FEE /* PersonalDataViewController.swift in Sources */,
+				1D8ADDA42AFCD111009D434F /* TextFieldWithPadding.swift in Sources */,
 				1D6E62152AF8ACFE004F4FEE /* FavoritesViewController.swift in Sources */,
 				1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */,
 				1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */,
 				1D6E62212AFB4C3E004F4FEE /* LanguageTableViewCell.swift in Sources */,
 				1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */,
+				1D8ADDA12AFCCD35009D434F /* ChangePasswordViewController.swift in Sources */,
 				1D6E62172AF8AD0A004F4FEE /* ProfileViewController.swift in Sources */,
 				1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */,
 			);

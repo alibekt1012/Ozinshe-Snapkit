@@ -74,6 +74,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         changePasswordButton.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         changePasswordButton.contentHorizontalAlignment = .left
         changePasswordButton.tag = 1005
+        changePasswordButton.addTarget(self, action: #selector(changePasswordButtonTouched), for: .touchUpInside)
             
         var arrow2 = UIImageView()
         arrow2.image = UIImage(named: "arrow")
@@ -305,6 +306,13 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         let personalDataVC = PersonalDataViewController()
         personalDataVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(personalDataVC, animated: true)
+    }
+    
+    @objc func changePasswordButtonTouched() {
+        
+        let changePasswordVC = ChangePasswordViewController()
+        changePasswordVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(changePasswordVC, animated: true)
     }
     
     @objc func changeLanguageButtonTouched() {
