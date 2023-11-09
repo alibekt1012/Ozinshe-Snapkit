@@ -28,6 +28,9 @@
 		1D6E622F2AFB6FA8004F4FEE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E62312AFB6FA8004F4FEE /* Localizable.strings */; };
 		1D8ADDA12AFCCD35009D434F /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDA02AFCCD35009D434F /* ChangePasswordViewController.swift */; };
 		1D8ADDA42AFCD111009D434F /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDA32AFCD111009D434F /* TextFieldWithPadding.swift */; };
+		1D8ADDAA2AFCE340009D434F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDA92AFCE340009D434F /* SignInViewController.swift */; };
+		1D8ADDAC2AFCE34B009D434F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDAB2AFCE34B009D434F /* SignUpViewController.swift */; };
+		1D8ADDAE2AFCED6F009D434F /* AddSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDAD2AFCED6F009D434F /* AddSubViews.swift */; };
 		37EF87A93FCDDBD836E029F6 /* Pods_Ozinshe_SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,9 @@
 		1D6E62332AFB700C004F4FEE /* kk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1D8ADDA02AFCCD35009D434F /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1D8ADDA32AFCD111009D434F /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
+		1D8ADDA92AFCE340009D434F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		1D8ADDAB2AFCE34B009D434F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		1D8ADDAD2AFCED6F009D434F /* AddSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubViews.swift; sourceTree = "<group>"; };
 		6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ozinshe_SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45145AB690BD6FC14C32341 /* Pods-Ozinshe_SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.release.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.release.xcconfig"; sourceTree = "<group>"; };
 		C873A2D1926B796290AEE81C /* Pods-Ozinshe_SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.debug.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,11 +119,12 @@
 		1D6E62032AF8A630004F4FEE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1D8ADDA82AFCE311009D434F /* Sign In_Up */,
+				1D8ADDA72AFCE2FE009D434F /* Favorites */,
+				1D8ADDA62AFCE2F4009D434F /* Search */,
+				1D8ADDA52AFCE2E3009D434F /* Main Page */,
 				1D6E621D2AF9214E004F4FEE /* Profile */,
 				1D6E61F32AF89ABC004F4FEE /* ViewController.swift */,
-				1D6E62102AF8ACE3004F4FEE /* MainPageViewController.swift */,
-				1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */,
-				1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -156,8 +163,42 @@
 			isa = PBXGroup;
 			children = (
 				1D8ADDA32AFCD111009D434F /* TextFieldWithPadding.swift */,
+				1D8ADDAD2AFCED6F009D434F /* AddSubViews.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1D8ADDA52AFCE2E3009D434F /* Main Page */ = {
+			isa = PBXGroup;
+			children = (
+				1D6E62102AF8ACE3004F4FEE /* MainPageViewController.swift */,
+			);
+			path = "Main Page";
+			sourceTree = "<group>";
+		};
+		1D8ADDA62AFCE2F4009D434F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		1D8ADDA72AFCE2FE009D434F /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		1D8ADDA82AFCE311009D434F /* Sign In_Up */ = {
+			isa = PBXGroup;
+			children = (
+				1D8ADDA92AFCE340009D434F /* SignInViewController.swift */,
+				1D8ADDAB2AFCE34B009D434F /* SignUpViewController.swift */,
+			);
+			path = "Sign In_Up";
 			sourceTree = "<group>";
 		};
 		86ADBFF87E08D512AB807219 /* Frameworks */ = {
@@ -304,14 +345,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D8ADDAA2AFCE340009D434F /* SignInViewController.swift in Sources */,
 				1D6E621F2AFA767C004F4FEE /* LanguageViewController.swift in Sources */,
 				1D6E62132AF8ACEE004F4FEE /* SearchViewController.swift in Sources */,
 				1D6E62112AF8ACE3004F4FEE /* MainPageViewController.swift in Sources */,
 				1D6E621C2AF90D49004F4FEE /* PersonalDataViewController.swift in Sources */,
+				1D8ADDAE2AFCED6F009D434F /* AddSubViews.swift in Sources */,
 				1D8ADDA42AFCD111009D434F /* TextFieldWithPadding.swift in Sources */,
 				1D6E62152AF8ACFE004F4FEE /* FavoritesViewController.swift in Sources */,
 				1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */,
 				1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */,
+				1D8ADDAC2AFCE34B009D434F /* SignUpViewController.swift in Sources */,
 				1D6E62212AFB4C3E004F4FEE /* LanguageTableViewCell.swift in Sources */,
 				1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */,
 				1D8ADDA12AFCCD35009D434F /* ChangePasswordViewController.swift in Sources */,
