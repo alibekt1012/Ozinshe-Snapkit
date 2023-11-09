@@ -7,13 +7,12 @@
 
 import UIKit
 import SnapKit
+import Localize_Swift
 
 class ProfileViewController: UIViewController, LanguageProtocol {
-    func languageDidChange() {
-        
-    }
     
     
+    // - MARK: UI Element Outlets
     private lazy var avatarImage: UIImageView = {
         
         let image = UIImageView()
@@ -26,7 +25,6 @@ class ProfileViewController: UIViewController, LanguageProtocol {
     private lazy var myProfileLabel: UILabel = {
         
         let label = UILabel()
-        label.text = "Менің профилім"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
         label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1.00)
         return label
@@ -43,6 +41,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
     }()
     
+    // - MARK: Profile options view
     private lazy var profileOptionsView: UIView = {
        
         let view = UIView()
@@ -50,16 +49,16 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         // Personal data
         var personalDataButton = UIButton()
-        personalDataButton.setTitle("Жеке деректер", for: .normal)
         personalDataButton.setTitleColor(UIColor(red: 0.11, green: 0.14, blue: 0.19, alpha: 1), for: .normal)
         personalDataButton.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         personalDataButton.contentHorizontalAlignment = .left
         personalDataButton.addTarget(self, action: #selector(personalDataButtonTouched), for: .touchUpInside)
-    
+        personalDataButton.tag = 1003
+        
         var editLabel = UILabel()
-        editLabel.text = "Өңдеу"
         editLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         editLabel.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
+        editLabel.tag = 1002
         
         var arrow = UIImageView()
         arrow.image = UIImage(named: "arrow")
@@ -71,10 +70,10 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         // Change password
         var changePasswordButton = UIButton()
-        changePasswordButton.setTitle("Құпия сөзді өзгерту", for: .normal)
         changePasswordButton.setTitleColor(UIColor(red: 0.11, green: 0.14, blue: 0.19, alpha: 1), for: .normal)
         changePasswordButton.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         changePasswordButton.contentHorizontalAlignment = .left
+        changePasswordButton.tag = 1005
             
         var arrow2 = UIImageView()
         arrow2.image = UIImage(named: "arrow")
@@ -85,16 +84,16 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         // Language
         var languageButton = UIButton()
-        languageButton.setTitle("Тіл", for: .normal)
         languageButton.setTitleColor(UIColor(red: 0.11, green: 0.14, blue: 0.19, alpha: 1), for: .normal)
         languageButton.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         languageButton.contentHorizontalAlignment = .left
         languageButton.addTarget(self, action: #selector(changeLanguageButtonTouched), for: .touchUpInside)
+        languageButton.tag = 1004
         
         var languageLabel = UILabel()
-        languageLabel.text = "Қазақша"
         languageLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         languageLabel.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
+        languageLabel.tag = 1001
         
         var arrow3 = UIImageView()
         arrow3.image = UIImage(named: "arrow")
@@ -105,9 +104,9 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         // Dark theme
         var darkThemeLabel = UILabel()
-        darkThemeLabel.text = "Қараңғы режим"
         darkThemeLabel.textColor = UIColor(red: 0.11, green: 0.14, blue: 0.19, alpha: 1)
         darkThemeLabel.font = UIFont(name: "SFProDisplay-Medium", size: 16)
+        darkThemeLabel.tag = 1006
       
         var darkThemeSwitch = UISwitch()
         darkThemeSwitch.onTintColor = UIColor(red: 0.7, green: 0.46, blue: 0.97, alpha: 1)        
@@ -206,11 +205,12 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         super.viewDidLoad()
         view.backgroundColor = .white
         // Do any additional setup after loading the view.
-        navigationItem.title = "Профиль"
+        setupLocalization()
         setupViews()
         setupConstraints()
+        
     }
-    // Setup Views
+    // - MARK: Setup Views
     func setupViews() {
         view.addSubview(avatarImage)
         view.addSubview(myProfileLabel)
@@ -218,7 +218,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         view.addSubview(profileOptionsView)
     }
     
-    // Setup Constarints
+    // - MARK: Setup Constraints
     func setupConstraints() {
         avatarImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(32)
@@ -241,9 +241,65 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         }
     }
     
-    // Localization
+    // - MARK: Setup Localization
+    func setupLocalization() {
+        myProfileLabel.text = "MY_PROFILE".localized()
+        
+        if let personalDataButton = profileOptionsView.viewWithTag(1003) as? UIButton {
+            personalDataButton.setTitle("PERSONAL_DATA".localized(), for: .normal)
+            }
+        
+        if let languageButton = profileOptionsView.viewWithTag(1004) as? UIButton {
+            languageButton.setTitle("LANGUAGE".localized(), for: .normal)
+            }
+        
+        if let changePasswordButton = profileOptionsView.viewWithTag(1005) as? UIButton {
+            changePasswordButton.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
+            }
+        
+        if let darkThemeLabel = profileOptionsView.viewWithTag(1006) as? UILabel {
+            darkThemeLabel.text = "DARK_MODE".localized()
+            }
+        
+        
+        if Localize.currentLanguage() == "ru" {
+            if let languageLabel = profileOptionsView.viewWithTag(1001) as? UILabel {
+                languageLabel.text = "Русский"
+                }
+            
+            if let editLabel = profileOptionsView.viewWithTag(1002) as? UILabel {
+                editLabel.text = "Править"
+                }
+            
+            navigationItem.title = "Профиль"
+        }
+        
+        if Localize.currentLanguage() == "kk" {
+            if let languageLabel = profileOptionsView.viewWithTag(1001) as? UILabel {
+                languageLabel.text = "Қазақша"
+                }
+            
+            if let editLabel = profileOptionsView.viewWithTag(1002) as? UILabel {
+                editLabel.text = "Өңдеу"
+                }
+            
+            navigationItem.title = "Профиль"
+        }
+        
+        if Localize.currentLanguage() == "en" {
+            if let languageLabel = profileOptionsView.viewWithTag(1001) as? UILabel {
+                languageLabel.text = "English"
+                }
+            
+            if let editLabel = profileOptionsView.viewWithTag(1002) as? UILabel {
+                editLabel.text = "Edit"
+                }
+            
+            navigationItem.title = "Profile"
+        }
+    }
     
-    
+    // - MARK: Button actions
     @objc func personalDataButtonTouched() {
         
         let personalDataVC = PersonalDataViewController()
@@ -256,13 +312,17 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         let languageVC = LanguageViewController()
         languageVC.hidesBottomBarWhenPushed = true
         languageVC.modalPresentationStyle = .overFullScreen
+        languageVC.delegate = self
         present(languageVC, animated: true)
         
     }
     
-    
+    func languageDidChange() {
+       setupLocalization()
+    }
 }
 
+// -MARK:  Extensions
 extension UIView {
     func addSubviews(_ views: UIView...) {
         views.forEach { self.addSubview($0) }
