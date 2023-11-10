@@ -8,9 +8,13 @@
 import UIKit
 import SnapKit
 import Localize_Swift
+import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class ProfileViewController: UIViewController, LanguageProtocol {
     
+    var profile = Profile()
     
     // - MARK: UI Element Outlets
     private lazy var avatarImage: UIImageView = {
@@ -34,7 +38,6 @@ class ProfileViewController: UIViewController, LanguageProtocol {
     private lazy var emailLabel: UILabel = {
         
         let label = UILabel()
-        label.text = "qwerty@mail.ru"
         label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
         label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
         return label
@@ -209,8 +212,51 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         setupLocalization()
         setupViews()
         setupConstraints()
+        downloadData()
         
     }
+    
+    func downloadData() {
+        SVProgressHUD.show()
+        
+        let headers: HTTPHeaders = [
+            "Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+        
+        AF.request("http://api.ozinshe.com/core/V1/user/profile", method: .get, headers: headers).responseData { response in
+            
+            SVProgressHUD.dismiss()
+            
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print(resultString)
+            }
+            
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+                
+                self.profile = Profile(json: json)
+                print(self.profile)
+                self.emailLabel.text = self.profile.user_email
+                
+//                else {
+//                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+//                }
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            }
+            
+        }
+        
+        
+    }
+    
     // - MARK: Setup Views
     func setupViews() {
         view.addSubview(avatarImage)
