@@ -7,8 +7,15 @@
 
 import UIKit
 import SnapKit
+import Alamofire
+import SVProgressHUD
+import SDWebImage
+import SwiftyJSON
+import Localize_Swift
 
 class SignInViewController: UIViewController {
+    
+    var validation = Validation()
 
     // - MARK: UI
     private lazy var greetingsLabel: UILabel = {
@@ -45,7 +52,16 @@ class SignInViewController: UIViewController {
         textField.placeholder = "Сіздің email"
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        textField.addTarget(self, action: #selector(textFieldEditingDidBegin), for: .editingDidBegin)
+        textField.addTarget(self, action: #selector(textFieldEditingDidEnd), for: .editingDidEnd)
         return textField
+    }()
+    
+    private lazy var validationLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
+        label.textColor = UIColor(red: 1, green: 0.25, blue: 0.17, alpha: 1)
+        return label
     }()
     
     private lazy var mailIconImageView: UIImageView = {
@@ -74,6 +90,8 @@ class SignInViewController: UIViewController {
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
         textField.textContentType = .password
         textField.isSecureTextEntry = true
+        textField.addTarget(self, action: #selector(textFieldEditingDidBegin), for: .editingDidBegin)
+        textField.addTarget(self, action: #selector(textFieldEditingDidEnd), for: .editingDidEnd)
         return textField
     }()
     
@@ -120,6 +138,7 @@ class SignInViewController: UIViewController {
         registrationButton.setTitle(" Тіркелу", for: .normal)
         registrationButton.setTitleColor(UIColor(red: 0.7, green: 0.46, blue: 0.97, alpha: 1), for: .normal)
         registrationButton.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
+        registrationButton.addTarget(self, action: #selector(registration), for: .touchUpInside)
         
         view.addSubviews(noAccountLabel, registrationButton)
         
@@ -141,12 +160,14 @@ class SignInViewController: UIViewController {
         view.backgroundColor = .white
         setupViews()
         setupConstraints()
+        keyboardWhenTappedAround()
     }
     
     
     // - MARK: Setup views
     func setupViews() {
-        view.addSubviews(greetingsLabel, logInLabel, emailLabel, emailTextField, mailIconImageView, passwordLabel, passwordTextField, keyIcon, showPasswordButton, forgotPasswordButton, logInButton, noAccountView)
+        view.addSubviews(greetingsLabel, logInLabel, emailLabel, emailTextField, mailIconImageView, validationLabel, passwordLabel, passwordTextField, keyIcon, showPasswordButton, forgotPasswordButton, logInButton, noAccountView)
+        logInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
     }
     
     
@@ -175,10 +196,20 @@ class SignInViewController: UIViewController {
             make.height.width.equalTo(20)
             make.centerY.equalTo(emailTextField.snp.centerY)
         }
-        
-        passwordLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(13)
-            make.leading.equalTo(24)
+        if validationLabel.text == nil {
+            passwordLabel.snp.makeConstraints { make in
+                make.top.equalTo(emailTextField.snp.bottom).offset(13)
+                make.leading.equalTo(24)
+            }
+        } else {
+            validationLabel.snp.makeConstraints { make in
+                make.top.equalTo(emailTextField.snp.bottom).offset(13)
+                make.leading.equalTo(24)
+            }
+            passwordLabel.snp.makeConstraints { make in
+                make.top.equalTo(validationLabel.snp.bottom).offset(13)
+                make.leading.equalTo(24)
+            }
         }
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(passwordLabel.snp.bottom).offset(4)
@@ -223,6 +254,100 @@ class SignInViewController: UIViewController {
             passwordTextField.isSecureTextEntry.toggle()
         } 
     }
+    
+    func keyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    
+    @objc func signIn() {
+        SVProgressHUD.show()
+        
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        let isValidateEmail = self.validation.validateEmailId(emailID: email)
+        
+        if email.isEmpty || password.isEmpty {
+            SVProgressHUD.dismiss()
+            validationLabel.text = "Please fill all required fields"
+            passwordLabel.snp.removeConstraints()
+            setupConstraints()
+            return
+        }
+       
+        if isValidateEmail == false {
+            SVProgressHUD.dismiss()
+            emailTextField.layer.borderColor = UIColor(red: 1.00, green: 0.25, blue: 0.17, alpha: 1.00).cgColor
+            validationLabel.text = "Қате формат"
+            passwordLabel.snp.removeConstraints()
+            setupConstraints()
+            return
+        }
+        
+        
+        let parameters = ["email": email, "password": password]
+        
+        AF.request(Urls.SIGN_IN_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
+            SVProgressHUD.dismiss()
+            
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print(resultString)
+            }
+            
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+                
+                if let accessToken = json["accessToken"].string {
+                    UserDefaults.standard.set(accessToken,forKey: "accessToken")
+                    
+                    Storage.sharedInstance.accessToken = accessToken
+                    
+                    self.startApp()
+                } else {
+                    SVProgressHUD.showError(withStatus: "error")
+                }
+            } else {
+                var errorString = "error"
+                if let sCode = response.response?.statusCode {
+                    errorString = errorString + "\(sCode)"
+                }
+                errorString = errorString + "\(resultString)"
+                SVProgressHUD.showError(withStatus: "\(errorString)")
+            }
+        }
+        
+    }
+    
+    func startApp() {
+        let tabBarVC = TabBarController()
+        tabBarVC.modalPresentationStyle = .fullScreen
+        present(tabBarVC, animated: true)
+    }
 
+    
+    @objc func textFieldEditingDidBegin(_ textField: UITextField) {
+          if let customTextField = textField as? TextFieldWithPadding {
+              customTextField.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+          }
+      }
+
+      @objc func textFieldEditingDidEnd(_ textField: UITextField) {
+          if let customTextField = textField as? TextFieldWithPadding {
+              customTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+          }
+      }
+    
+    @objc func registration() {
+        let signUpVC = SignUpViewController()
+        navigationController?.pushViewController(signUpVC, animated: true)
+    }
 }
 

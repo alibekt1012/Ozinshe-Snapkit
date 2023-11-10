@@ -13,13 +13,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        (UIApplication.shared.delegate as? AppDelegate)?.self.window = window
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(windowScene: windowScene)
+        UserDefaults.standard.removeObject(forKey: "accessToken")
         
-        let viewController = TabBarController()
-        window?.rootViewController = SignInViewController()
-        window?.makeKeyAndVisible()
+        if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
+            Storage.sharedInstance.accessToken = accessToken
+            self.window = UIWindow(windowScene: windowScene)
+            let tabBar = TabBarController()
+            self.window?.rootViewController = tabBar
+            self.window?.makeKeyAndVisible()
+        } else {
+            window = UIWindow(windowScene: windowScene)
+            let viewController = UINavigationController(rootViewController: SignInViewController())
+            window?.rootViewController = viewController
+            window?.makeKeyAndVisible()
+        }
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
