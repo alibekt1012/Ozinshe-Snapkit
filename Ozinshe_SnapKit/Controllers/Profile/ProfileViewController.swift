@@ -12,7 +12,7 @@ import SVProgressHUD
 import Alamofire
 import SwiftyJSON
 
-class ProfileViewController: UIViewController, LanguageProtocol {
+class ProfileViewController: UIViewController, LanguageProtocol, PersonalDataDelegate {
     
     var profile = Profile()
     
@@ -216,7 +216,12 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
     }
     
+    func personalDataChanged(updatedData: Profile) {
+        profile = updatedData
+    }
+    
     func downloadData() {
+        SVProgressHUD.setContainerView(self.view)
         SVProgressHUD.show()
         
         let headers: HTTPHeaders = [
@@ -351,6 +356,8 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         let personalDataVC = PersonalDataViewController()
         personalDataVC.hidesBottomBarWhenPushed = true
+        personalDataVC.userData = profile
+        personalDataVC.delegate = self
         self.navigationController?.pushViewController(personalDataVC, animated: true)
     }
     

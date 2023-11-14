@@ -7,8 +7,18 @@
 
 import UIKit
 import SnapKit
+import SVProgressHUD
+import SwiftyJSON
+import Alamofire
+
+protocol PersonalDataDelegate: AnyObject {
+    func personalDataChanged(updatedData: Profile)
+}
 
 class PersonalDataViewController: UIViewController {
+    
+    var userData: Profile?
+    var delegate: PersonalDataDelegate?
 
     
     // Name
@@ -27,7 +37,6 @@ class PersonalDataViewController: UIViewController {
         let textField = UITextField()
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-        textField.text = "Алмат"
         return textField
         
     }()
@@ -56,7 +65,6 @@ class PersonalDataViewController: UIViewController {
         let textField = UITextField()
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-        textField.text = "email@email.com"
         return textField
         
     }()
@@ -85,7 +93,6 @@ class PersonalDataViewController: UIViewController {
         let textField = UITextField()
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-        textField.text = "87776665544"
         return textField
         
     }()
@@ -114,7 +121,8 @@ class PersonalDataViewController: UIViewController {
         let textField = UITextField()
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         textField.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-        textField.text = "19 қыркүйек 2004"
+        textField.setInputViewDatePicker(target: self, selector: #selector(tapDone))
+        
         return textField
         
     }()
@@ -136,6 +144,7 @@ class PersonalDataViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         button.titleLabel?.textColor = .white
         button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
         return button
         
     }()
@@ -148,7 +157,53 @@ class PersonalDataViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupData()
         
+    }
+    
+    
+    @objc func saveChanges() {
+        SVProgressHUD.setContainerView(self.view)
+        SVProgressHUD.show()
+        
+        let email = nameTextField.text!
+        let birthDate = birthdayTextField.text!
+        let phoneNumber = phoneTextField.text!
+        let language = userData?.language
+        
+        
+        let parameters = ["name" : email, "birthDate" : birthDate, "phoneNumber" : phoneNumber, "language" : language]
+        
+        let headers: HTTPHeaders = [
+            "Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+        
+        AF.request("http://api.ozinshe.com/core/V1/user/profile/", method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseData { response in
+            
+            SVProgressHUD.dismiss()
+            
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+            }
+            
+            if response.response?.statusCode == 200 {
+                self.userData?.name = self.nameTextField.text!
+                self.userData?.birthDate = self.birthdayTextField.text!
+                self.userData?.phoneNumber = self.phoneTextField.text!
+                self.delegate?.personalDataChanged(updatedData: self.userData!)
+                SVProgressHUD.showSuccess(withStatus: "Changes applied")
+                SVProgressHUD.dismiss(withDelay: 1.5)
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                SVProgressHUD.dismiss(withDelay: 1.5)
+            }
+        }
     }
     
     
@@ -248,9 +303,30 @@ class PersonalDataViewController: UIViewController {
         saveButton.snp.makeConstraints { make in
             make.leading.equalTo(24)
             make.trailing.equalTo(-24)
-            make.top.equalTo(separatorView4.snp.bottom).offset(250)
             make.height.equalTo(56)
+            make.bottom.equalToSuperview().offset(-42)
         }
     }
+    
+    func setupData() {
+        guard let userData = userData else {
+            return
+        }
+    
+        nameTextField.text = userData.name
+        phoneTextField.text = userData.phoneNumber
+        birthdayTextField.text = userData.birthDate
+        emailTextField.text = userData.user_email
+        print(userData)
+    }
+    
+    @objc func tapDone() {
+            if let datePicker = self.birthdayTextField.inputView as? UIDatePicker { // 2-1
+                let dateformatter = DateFormatter() // 2-2
+                dateformatter.dateFormat = "yyyy-MM-dd" // 2-3
+                self.birthdayTextField.text = dateformatter.string(from: datePicker.date) //2-4
+            }
+            self.birthdayTextField.resignFirstResponder() // 2-5
+        }
 
 } 

@@ -267,6 +267,7 @@ class SignInViewController: UIViewController {
     
     
     @objc func signIn() {
+        SVProgressHUD.setContainerView(self.view)
         SVProgressHUD.show()
         
         let email = emailTextField.text!

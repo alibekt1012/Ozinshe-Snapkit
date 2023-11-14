@@ -262,6 +262,7 @@ class SignUpViewController: UIViewController {
     // - MARK: Logic
     
     @objc func signUp() {
+        SVProgressHUD.setContainerView(self.view)
         SVProgressHUD.show()
         
         let email = emailTextField.text!

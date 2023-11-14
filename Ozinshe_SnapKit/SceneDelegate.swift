@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        UserDefaults.standard.removeObject(forKey: "accessToken")
+        //UserDefaults.standard.removeObject(forKey: "accessToken")
         
         if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
             Storage.sharedInstance.accessToken = accessToken
