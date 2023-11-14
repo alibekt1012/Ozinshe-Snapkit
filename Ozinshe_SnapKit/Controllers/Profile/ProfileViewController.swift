@@ -208,7 +208,6 @@ class ProfileViewController: UIViewController, LanguageProtocol, PersonalDataDel
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
         setupLocalization()
         setupViews()
         setupConstraints()
@@ -268,6 +267,10 @@ class ProfileViewController: UIViewController, LanguageProtocol, PersonalDataDel
         view.addSubview(myProfileLabel)
         view.addSubview(emailLabel)
         view.addSubview(profileOptionsView)
+        
+        let logOutButton = UIBarButtonItem(image: UIImage(named: "logOut"), style: .plain, target: self, action: #selector(logOut))
+        
+        navigationItem.rightBarButtonItem = logOutButton
     }
     
     // - MARK: Setup Constraints
@@ -380,6 +383,13 @@ class ProfileViewController: UIViewController, LanguageProtocol, PersonalDataDel
     
     func languageDidChange() {
        setupLocalization()
+    }
+    
+    @objc func logOut() {
+        let logOutVC = LogOutViewController()
+        logOutVC.hidesBottomBarWhenPushed = true
+        logOutVC.modalPresentationStyle = .overFullScreen
+        present(logOutVC, animated: true)
     }
 }
 

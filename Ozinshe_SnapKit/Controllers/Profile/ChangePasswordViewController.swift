@@ -7,6 +7,9 @@
 
 import UIKit
 import SnapKit
+import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class ChangePasswordViewController: UIViewController {
 
@@ -88,6 +91,7 @@ class ChangePasswordViewController: UIViewController {
         button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
         button.layer.cornerRadius = 12
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
         return button
     }()
     
@@ -180,6 +184,50 @@ class ChangePasswordViewController: UIViewController {
         } else if sender == showPasswordButton2 {
             repeatPasswordTextField.isSecureTextEntry.toggle()
         }
+    }
+    
+    @objc func saveChanges() {
+        SVProgressHUD.setContainerView(self.view)
+        SVProgressHUD.show()
+        
+        let password = passwordTextField.text!
+        let confirmPassword = repeatPasswordTextField.text!
+        
+        let parameters = ["password" : password]
+                
+        let headers: HTTPHeaders = [
+            "Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+        
+        if password != confirmPassword {
+            SVProgressHUD.dismiss()
+            SVProgressHUD.showError(withStatus: "Password's is not matching")
+            return
+        }
+        
+        AF.request("http://api.ozinshe.com/core/V1/user/profile/changePassword", method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseData { response in
+            
+            SVProgressHUD.dismiss()
+            
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+            }
+            
+            if response.response?.statusCode == 200 {
+                SVProgressHUD.showSuccess(withStatus: "Password changed")
+                SVProgressHUD.dismiss(withDelay: 1.5)
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                SVProgressHUD.dismiss(withDelay: 1.5)
+            }
+        }
+        
     }
     
 }

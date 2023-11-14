@@ -36,6 +36,7 @@
 		1D8ADDB62AFE053D009D434F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDB52AFE053D009D434F /* Validation.swift */; };
 		1D8ADDB82AFE055E009D434F /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDB72AFE055E009D434F /* DatePicker.swift */; };
 		1D8ADDBA2AFE376F009D434F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDB92AFE376F009D434F /* Profile.swift */; };
+		1DDC55DF2B037BF400771793 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC55DE2B037BF400771793 /* LogOutViewController.swift */; };
 		37EF87A93FCDDBD836E029F6 /* Pods_Ozinshe_SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		1D8ADDB52AFE053D009D434F /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		1D8ADDB72AFE055E009D434F /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		1D8ADDB92AFE376F009D434F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Extensions/Profile.swift; sourceTree = SOURCE_ROOT; };
+		1DDC55DE2B037BF400771793 /* LogOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
 		6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ozinshe_SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45145AB690BD6FC14C32341 /* Pods-Ozinshe_SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.release.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.release.xcconfig"; sourceTree = "<group>"; };
 		C873A2D1926B796290AEE81C /* Pods-Ozinshe_SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.debug.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				1D6E621E2AFA767C004F4FEE /* LanguageViewController.swift */,
 				1D6E62202AFB4C3E004F4FEE /* LanguageTableViewCell.swift */,
 				1D8ADDA02AFCCD35009D434F /* ChangePasswordViewController.swift */,
+				1DDC55DE2B037BF400771793 /* LogOutViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				1D6E621F2AFA767C004F4FEE /* LanguageViewController.swift in Sources */,
 				1D6E62132AF8ACEE004F4FEE /* SearchViewController.swift in Sources */,
 				1D6E62112AF8ACE3004F4FEE /* MainPageViewController.swift in Sources */,
+				1DDC55DF2B037BF400771793 /* LogOutViewController.swift in Sources */,
 				1D6E621C2AF90D49004F4FEE /* PersonalDataViewController.swift in Sources */,
 				1D8ADDB42AFDE6AF009D434F /* Storage.swift in Sources */,
 				1D8ADDAE2AFCED6F009D434F /* AddSubViews.swift in Sources */,
