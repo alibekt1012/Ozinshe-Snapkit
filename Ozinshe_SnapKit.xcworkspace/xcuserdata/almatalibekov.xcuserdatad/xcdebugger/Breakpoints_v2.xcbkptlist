@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "EEF4D4F8-E279-4740-A0AC-7A814C0AB076"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "88F6DA9F-6E7D-4ED4-B0B2-764A42E34305"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ozinshe_SnapKit/Controllers/Profile/ChangePasswordViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "saveChanges()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "88F6DA9F-6E7D-4ED4-B0B2-764A42E34305 - b682e18be4fd5f21"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ozinshe_SnapKit.ChangePasswordViewController.saveChanges() -&gt; ()"
+                  moduleName = "Ozinshe_SnapKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/almatalibekov/Desktop/MobyDev/Ozinshe_SnapKit/Ozinshe_SnapKit/Controllers/Profile/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "1356">
+               </Location>
+               <Location
+                  uuid = "88F6DA9F-6E7D-4ED4-B0B2-764A42E34305 - b682e18be4fd5f21"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ozinshe_SnapKit.ChangePasswordViewController.saveChanges() -&gt; ()"
+                  moduleName = "Ozinshe_SnapKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/almatalibekov/Desktop/MobyDev/Ozinshe_SnapKit/Ozinshe_SnapKit/Controllers/Profile/ChangePasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "1448">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

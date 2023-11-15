@@ -37,6 +37,8 @@
 		1D8ADDB82AFE055E009D434F /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDB72AFE055E009D434F /* DatePicker.swift */; };
 		1D8ADDBA2AFE376F009D434F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8ADDB92AFE376F009D434F /* Profile.swift */; };
 		1DDC55DF2B037BF400771793 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC55DE2B037BF400771793 /* LogOutViewController.swift */; };
+		1DDC55E62B039C7F00771793 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC55E42B039C7F00771793 /* MovieTableViewCell.swift */; };
+		1DDC55E92B051DC300771793 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC55E82B051DC300771793 /* Movie.swift */; };
 		37EF87A93FCDDBD836E029F6 /* Pods_Ozinshe_SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,8 @@
 		1D8ADDB72AFE055E009D434F /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		1D8ADDB92AFE376F009D434F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Extensions/Profile.swift; sourceTree = SOURCE_ROOT; };
 		1DDC55DE2B037BF400771793 /* LogOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
+		1DDC55E42B039C7F00771793 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		1DDC55E82B051DC300771793 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Movie.swift; path = Ozinshe_SnapKit/Controllers/Favorites/Movie.swift; sourceTree = SOURCE_ROOT; };
 		6D2F1E0C6CC5F62F4D625038 /* Pods_Ozinshe_SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ozinshe_SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45145AB690BD6FC14C32341 /* Pods-Ozinshe_SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.release.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.release.xcconfig"; sourceTree = "<group>"; };
 		C873A2D1926B796290AEE81C /* Pods-Ozinshe_SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe_SnapKit.debug.xcconfig"; path = "Target Support Files/Pods-Ozinshe_SnapKit/Pods-Ozinshe_SnapKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				1D8ADDB92AFE376F009D434F /* Profile.swift */,
+				1DDC55E82B051DC300771793 /* Movie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6E62142AF8ACFE004F4FEE /* FavoritesViewController.swift */,
+				1DDC55E42B039C7F00771793 /* MovieTableViewCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				1D8ADDBA2AFE376F009D434F /* Profile.swift in Sources */,
 				1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */,
 				1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */,
+				1DDC55E92B051DC300771793 /* Movie.swift in Sources */,
 				1D8ADDAC2AFCE34B009D434F /* SignUpViewController.swift in Sources */,
 				1D8ADDB62AFE053D009D434F /* Validation.swift in Sources */,
 				1D6E62212AFB4C3E004F4FEE /* LanguageTableViewCell.swift in Sources */,
@@ -401,6 +408,7 @@
 				1D6E62172AF8AD0A004F4FEE /* ProfileViewController.swift in Sources */,
 				1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */,
 				1D8ADDB82AFE055E009D434F /* DatePicker.swift in Sources */,
+				1DDC55E62B039C7F00771793 /* MovieTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
