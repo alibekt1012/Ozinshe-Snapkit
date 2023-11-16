@@ -37,6 +37,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func downloadData() {
+        SVProgressHUD.setContainerView(self.view)
         SVProgressHUD.show()
         
         self.favorites.removeAll()

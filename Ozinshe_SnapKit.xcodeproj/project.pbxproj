@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D09FBFF2B064B2D0042DC57 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09FBFE2B064B2D0042DC57 /* CategoryTableViewController.swift */; };
 		1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */; };
 		1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */; };
 		1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F32AF89ABC004F4FEE /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D09FBFE2B064B2D0042DC57 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		1D6E61EC2AF89ABC004F4FEE /* Ozinshe_SnapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ozinshe_SnapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */,
+				1D09FBFE2B064B2D0042DC57 /* CategoryTableViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				1DDC55E92B051DC300771793 /* Movie.swift in Sources */,
 				1D8ADDAC2AFCE34B009D434F /* SignUpViewController.swift in Sources */,
 				1D8ADDB62AFE053D009D434F /* Validation.swift in Sources */,
+				1D09FBFF2B064B2D0042DC57 /* CategoryTableViewController.swift in Sources */,
 				1D6E62212AFB4C3E004F4FEE /* LanguageTableViewCell.swift in Sources */,
 				1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */,
 				1D8ADDA12AFCCD35009D434F /* ChangePasswordViewController.swift in Sources */,
