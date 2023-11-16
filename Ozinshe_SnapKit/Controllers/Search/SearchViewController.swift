@@ -41,6 +41,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let button = UIButton()
         button.setImage(UIImage(named: "clear"), for: .normal)
         button.imageView?.contentMode = .scaleToFill
+        button.addTarget(self, action: #selector(clearSearch), for: .touchUpInside)
         return button
     }()
     
