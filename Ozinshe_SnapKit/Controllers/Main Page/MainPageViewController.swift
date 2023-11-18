@@ -7,24 +7,43 @@
 
 import UIKit
 
-class MainPageViewController: UIViewController {
-
+class MainPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+ 
+    var mainMovies: [MainMovie] = []
+    
+    private lazy var tableView: UITableView = {
+       let tv = UITableView()
+        tv.delegate = self
+        tv.dataSource = self
+        return tv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        addNavBarImage()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func addNavBarImage() {
+        let image = UIImage(named: "LogoMainPage")!
+        
+        let logoImageView = UIImageView(image: image)
+        let imageItem = UIBarButtonItem.init(customView: logoImageView)
+        navigationItem.leftBarButtonItem = imageItem
+        
     }
-    */
+}
 
+
+
+extension MainPageViewController {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mainMovies.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
 }

@@ -27,9 +27,9 @@ struct Movie {
     var createdDate = ""
     var lastModifiedDate = ""
     var categories: [Category] = []
-    //var genres: [Genre] = []
+    var genres: [Genre] = []
     var favorite = false
-    //var screenshots: [Screenshot] = []
+//    var screenshots: [Screenshot] = []
     
     init() {
         
@@ -97,16 +97,16 @@ struct Movie {
                 categories.append(temp)
             }
         }
-//        if let array = json["genres"].array {
-//            for item in array {
-//                let temp = Genre(json: item)
-//                genres.append(temp)
-//            }
-//        }
+        if let array = json["genres"].array {
+            for item in array {
+                let temp = Genre(json: item)
+                genres.append(temp)
+            }
+        }
         if let temp = json["favorite"].bool {
             favorite = temp
         }
-//
+
 //        if let array = json["screenshots"].array {
 //            for item in array {
 //                let temp = Screenshot(json: item)

@@ -10,6 +10,10 @@
 		1D09FBFF2B064B2D0042DC57 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09FBFE2B064B2D0042DC57 /* CategoryTableViewController.swift */; };
 		1D167B4F2B08858F00E37743 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D167B4E2B08858F00E37743 /* Category.swift */; };
 		1D167B512B08DA5200E37743 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D167B502B08DA5200E37743 /* CategoryCollectionViewCell.swift */; };
+		1D167B532B09116C00E37743 /* MainMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D167B522B09116C00E37743 /* MainMovie.swift */; };
+		1D167B552B09118F00E37743 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D167B542B09118F00E37743 /* Genre.swift */; };
+		1D167B572B0911A200E37743 /* CategoryAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D167B562B0911A200E37743 /* CategoryAge.swift */; };
+		1D167B592B0911BF00E37743 /* BannerMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D167B582B0911BF00E37743 /* BannerMovie.swift */; };
 		1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */; };
 		1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */; };
 		1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F32AF89ABC004F4FEE /* ViewController.swift */; };
@@ -49,6 +53,10 @@
 		1D09FBFE2B064B2D0042DC57 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		1D167B4E2B08858F00E37743 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Ozinshe_SnapKit/Controllers/Search/Category.swift; sourceTree = SOURCE_ROOT; };
 		1D167B502B08DA5200E37743 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		1D167B522B09116C00E37743 /* MainMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainMovie.swift; path = Ozinshe_SnapKit/Controllers/Search/MainMovie.swift; sourceTree = SOURCE_ROOT; };
+		1D167B542B09118F00E37743 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Genre.swift; path = Ozinshe_SnapKit/Controllers/Search/Genre.swift; sourceTree = SOURCE_ROOT; };
+		1D167B562B0911A200E37743 /* CategoryAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryAge.swift; path = Ozinshe_SnapKit/Controllers/Search/CategoryAge.swift; sourceTree = SOURCE_ROOT; };
+		1D167B582B0911BF00E37743 /* BannerMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BannerMovie.swift; path = Ozinshe_SnapKit/Controllers/Search/BannerMovie.swift; sourceTree = SOURCE_ROOT; };
 		1D6E61EC2AF89ABC004F4FEE /* Ozinshe_SnapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ozinshe_SnapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +167,10 @@
 				1D8ADDB92AFE376F009D434F /* Profile.swift */,
 				1DDC55E82B051DC300771793 /* Movie.swift */,
 				1D167B4E2B08858F00E37743 /* Category.swift */,
+				1D167B522B09116C00E37743 /* MainMovie.swift */,
+				1D167B542B09118F00E37743 /* Genre.swift */,
+				1D167B562B0911A200E37743 /* CategoryAge.swift */,
+				1D167B582B0911BF00E37743 /* BannerMovie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,6 +416,7 @@
 				1D8ADDB42AFDE6AF009D434F /* Storage.swift in Sources */,
 				1D8ADDAE2AFCED6F009D434F /* AddSubViews.swift in Sources */,
 				1D8ADDA42AFCD111009D434F /* TextFieldWithPadding.swift in Sources */,
+				1D167B552B09118F00E37743 /* Genre.swift in Sources */,
 				1D167B4F2B08858F00E37743 /* Category.swift in Sources */,
 				1D6E62152AF8ACFE004F4FEE /* FavoritesViewController.swift in Sources */,
 				1D8ADDB12AFDE699009D434F /* Urls.swift in Sources */,
@@ -412,13 +425,16 @@
 				1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */,
 				1DDC55E92B051DC300771793 /* Movie.swift in Sources */,
 				1D8ADDAC2AFCE34B009D434F /* SignUpViewController.swift in Sources */,
+				1D167B572B0911A200E37743 /* CategoryAge.swift in Sources */,
 				1D8ADDB62AFE053D009D434F /* Validation.swift in Sources */,
+				1D167B532B09116C00E37743 /* MainMovie.swift in Sources */,
 				1D09FBFF2B064B2D0042DC57 /* CategoryTableViewController.swift in Sources */,
 				1D6E62212AFB4C3E004F4FEE /* LanguageTableViewCell.swift in Sources */,
 				1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */,
 				1D8ADDA12AFCCD35009D434F /* ChangePasswordViewController.swift in Sources */,
 				1D6E62172AF8AD0A004F4FEE /* ProfileViewController.swift in Sources */,
 				1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */,
+				1D167B592B0911BF00E37743 /* BannerMovie.swift in Sources */,
 				1D8ADDB82AFE055E009D434F /* DatePicker.swift in Sources */,
 				1DDC55E62B039C7F00771793 /* MovieTableViewCell.swift in Sources */,
 			);
