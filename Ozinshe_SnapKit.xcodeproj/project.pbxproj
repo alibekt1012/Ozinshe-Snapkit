@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1D09FBFF2B064B2D0042DC57 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09FBFE2B064B2D0042DC57 /* CategoryTableViewController.swift */; };
+		1D167B4F2B08858F00E37743 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D167B4E2B08858F00E37743 /* Category.swift */; };
+		1D167B512B08DA5200E37743 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D167B502B08DA5200E37743 /* CategoryCollectionViewCell.swift */; };
 		1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */; };
 		1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */; };
 		1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F32AF89ABC004F4FEE /* ViewController.swift */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		1D09FBFE2B064B2D0042DC57 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		1D167B4E2B08858F00E37743 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Ozinshe_SnapKit/Controllers/Search/Category.swift; sourceTree = SOURCE_ROOT; };
+		1D167B502B08DA5200E37743 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D6E61EC2AF89ABC004F4FEE /* Ozinshe_SnapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ozinshe_SnapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 			children = (
 				1D8ADDB92AFE376F009D434F /* Profile.swift */,
 				1DDC55E82B051DC300771793 /* Movie.swift */,
+				1D167B4E2B08858F00E37743 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 			children = (
 				1D6E62122AF8ACEE004F4FEE /* SearchViewController.swift */,
 				1D09FBFE2B064B2D0042DC57 /* CategoryTableViewController.swift */,
+				1D167B502B08DA5200E37743 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -392,11 +398,13 @@
 				1D6E621F2AFA767C004F4FEE /* LanguageViewController.swift in Sources */,
 				1D6E62132AF8ACEE004F4FEE /* SearchViewController.swift in Sources */,
 				1D6E62112AF8ACE3004F4FEE /* MainPageViewController.swift in Sources */,
+				1D167B512B08DA5200E37743 /* CategoryCollectionViewCell.swift in Sources */,
 				1DDC55DF2B037BF400771793 /* LogOutViewController.swift in Sources */,
 				1D6E621C2AF90D49004F4FEE /* PersonalDataViewController.swift in Sources */,
 				1D8ADDB42AFDE6AF009D434F /* Storage.swift in Sources */,
 				1D8ADDAE2AFCED6F009D434F /* AddSubViews.swift in Sources */,
 				1D8ADDA42AFCD111009D434F /* TextFieldWithPadding.swift in Sources */,
+				1D167B4F2B08858F00E37743 /* Category.swift in Sources */,
 				1D6E62152AF8ACFE004F4FEE /* FavoritesViewController.swift in Sources */,
 				1D8ADDB12AFDE699009D434F /* Urls.swift in Sources */,
 				1D8ADDBA2AFE376F009D434F /* Profile.swift in Sources */,

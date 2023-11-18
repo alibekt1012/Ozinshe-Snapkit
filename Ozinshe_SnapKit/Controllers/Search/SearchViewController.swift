@@ -11,9 +11,33 @@ import SVProgressHUD
 import Alamofire
 import SwiftyJSON
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let attributes = super.layoutAttributesForElements(in: rect)
+
+        var leftMargin = sectionInset.left
+        var maxY: CGFloat = -1.0
+        attributes?.forEach { layoutAttribute in
+            if layoutAttribute.frame.origin.y >= maxY {
+                leftMargin = sectionInset.left
+            }
+
+            layoutAttribute.frame.origin.x = leftMargin
+
+            leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
+            maxY = max(layoutAttribute.frame.maxY , maxY)
+        }
+
+        return attributes
+    }
+}
+
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
    
     var movies: [Movie] = []
+    
+    var categories: [Category] = []
     
     private lazy var searchTextField: TextFieldWithPadding = {
        let search = TextFieldWithPadding()
@@ -34,6 +58,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         button.imageView?.contentMode = .scaleToFill
         button.backgroundColor = UIColor(red: 0.95, green: 0.96, blue: 0.96, alpha: 1)
         button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(searhcButtonTouched), for: .touchUpInside)
         return button
     }()
     
@@ -42,12 +67,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         button.setImage(UIImage(named: "clear"), for: .normal)
         button.imageView?.contentMode = .scaleToFill
         button.addTarget(self, action: #selector(clearSearch), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
     private lazy var titleLabel: UILabel = {
        let label = UILabel()
-        label.text = "Іздеу нәтижелері"
+        label.text = "Санаттар"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
         label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
         return label
@@ -64,6 +90,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }()
     
+    private lazy var categoryCollectionView: UICollectionView = {
+        
+        let layout = LeftAlignedCollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 16.0, left: 24.0, bottom: 16.0, right: 24.0)
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 8
+        layout.estimatedItemSize.width = 100
+
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+         cv.delegate = self
+         cv.dataSource = self
+         cv.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCell")
+       
+        
+        return cv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -71,10 +114,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         setupViews()
         setupConstraints()
+        keyboardWhenTappedAround()
+        downloadCategories()
     }
     
     func setupViews() {
-        view.addSubviews(searchTextField, searchButton, clearButton, titleLabel, searchResultsTableView)
+        view.addSubviews(searchTextField, searchButton, clearButton, titleLabel, searchResultsTableView, categoryCollectionView)
     }
     
     func setupConstraints() {
@@ -100,10 +145,30 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             make.leading.equalTo(24)
             make.top.equalTo(searchTextField.snp.bottom).offset(32)
         }
-        searchResultsTableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(24)
-            make.leading.trailing.bottom.equalToSuperview()
+        
+        categoryCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(400)
+            make.bottom.equalTo(searchResultsTableView.snp.top)
         }
+        searchResultsTableView.snp.makeConstraints { make in
+            make.top.equalTo(categoryCollectionView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+       
+    }
+    
+    func keyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     
@@ -129,15 +194,66 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchValueChanged()
     }
     
+    @objc func searhcButtonTouched() {
+        downloadSearchMovies()
+    }
+    
+    // MARK: - Download caregories
+    func downloadCategories() {
+        
+        SVProgressHUD.setContainerView(self.view)
+        SVProgressHUD.show()
+        
+        let headers: HTTPHeaders = [
+            "Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+        
+        AF.request(Urls.CATEGORIES_URL, method: .get, headers: headers).responseData { response in
+                   
+                   SVProgressHUD.dismiss()
+                   var resultString = ""
+                   if let data = response.data {
+                       resultString = String(data: data, encoding: .utf8)!
+                       print(resultString)
+                   }
+                   
+                   if response.response?.statusCode == 200 {
+                       let json = JSON(response.data!)
+                       print("JSON: \(json)")
+                       
+                       if let array = json.array {
+                           for item in array {
+                               let category = Category(json: item)
+                               self.categories.append(category)
+                           }
+                           self.categoryCollectionView.reloadData()
+                       } else {
+                           SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                       }
+                   } else {
+                       var ErrorString = "CONNECTION_ERROR".localized()
+                       if let sCode = response.response?.statusCode {
+                           ErrorString = ErrorString + " \(sCode)"
+                       }
+                       ErrorString = ErrorString + " \(resultString)"
+                       SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                   }
+               }
+    }
     
     func downloadSearchMovies() {
         
         let searchText = searchTextField.text!
         
         if searchText.isEmpty {
-            // Hide tableView
-//            tableViewToLableConstraint.priority = .defaultLow
-//            tableViewToCollectionViewConstraint.priority = .defaultHigh
+            // Hide Table view
+            
+            searchResultsTableView.snp.removeConstraints()
+            searchResultsTableView.snp.makeConstraints { make in
+                make.top.equalTo(categoryCollectionView.snp.bottom)
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(view.safeAreaLayoutGuide)
+            }
 
             movies.removeAll()
             searchResultsTableView.reloadData()
@@ -149,10 +265,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-//         Показать tableview
-//
-//        tableViewToLableConstraint.priority = .defaultHigh
-//        tableViewToCollectionViewConstraint.priority = .defaultLow
+        // Hide collection view and show table view
+        
+        searchResultsTableView.snp.removeConstraints()
+        searchResultsTableView.snp.updateConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
         titleLabel.text = "Іздеу нәтижелері"
         clearButton.isHidden = false
         
@@ -221,4 +341,26 @@ extension SearchViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 153
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCollectionViewCell
+        cell.setupCell(category: categories[indexPath.item])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let categoryMoviesVC = CategoryTableViewController()
+        
+        categoryMoviesVC.categoryId = categories[indexPath.row].id
+        categoryMoviesVC.categoryName = categories[indexPath.row].name
+        
+        navigationController?.pushViewController(categoryMoviesVC, animated: true)
+    }
+    
+    
 }
