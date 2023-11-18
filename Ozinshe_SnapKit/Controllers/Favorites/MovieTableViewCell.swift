@@ -13,6 +13,7 @@ class MovieTableViewCell: UITableViewCell {
     private lazy var posterImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         return imageView
     }()
     

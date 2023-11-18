@@ -40,7 +40,7 @@ class CategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: "MovieCell")
-        
+        tableView.separatorStyle = .none
         downloadMovieByCategoryId()
         self.title = categoryName
 
