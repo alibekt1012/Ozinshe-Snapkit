@@ -47,7 +47,7 @@ class CategoryTableViewController: UITableViewController {
     }
     
     func downloadMovieByCategoryId() {
-        
+        SVProgressHUD.setContainerView(self.view)
         SVProgressHUD.show()
         
         let headers: HTTPHeaders = [
