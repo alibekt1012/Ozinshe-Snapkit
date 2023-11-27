@@ -17,5 +17,11 @@ class Urls {
     static let SEARCH_MOVIES_URL = BASE_URL + "movies/search"
     static let MOVIES_BY_CATEGORY_URL = BASE_URL + "movies/page"
     static let MAIN_MOVIES_URL = BASE_URL + "movies/main"
+    static let GENRES_URL = BASE_URL + "genres"
+    static let CATEGORY_AGES_URL = BASE_URL + "category-ages"
+    static let MAIN_BANNERS_URL = BASE_URL + "movies_main"
+    static let HISTORY_URL = BASE_URL + "history/userHistory"
+    static let SIMILAR_MOVIES = BASE_URL + "movies/similar/"
+    static let GET_SEASONS_URL = BASE_URL + "seasons/"
     
 }

@@ -24,7 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             Storage.sharedInstance.accessToken = accessToken
             self.window = UIWindow(windowScene: windowScene)
             let tabBar = TabBarController()
-            self.window?.rootViewController = tabBar
+            let vc = MovieInfoViewController()
+            self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
         } else {
             window = UIWindow(windowScene: windowScene)

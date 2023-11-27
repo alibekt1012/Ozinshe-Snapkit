@@ -1,14 +1,14 @@
 //
-//  MainBannerTableViewCell.swift
+//  HistoryTableViewCell.swift
 //  Ozinshe_SnapKit
 //
-//  Created by Almat Alibekov on 20.11.2023.
+//  Created by Almat Alibekov on 22.11.2023.
 //
 
 import UIKit
 
-class MainBannerTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
-   
+class HistoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+
     var mainMovie = MainMovie()
     
     private lazy var collectionView: UICollectionView = {
@@ -17,16 +17,24 @@ class MainBannerTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         layout.sectionInset = UIEdgeInsets(top: 0, left: 24.0, bottom: 0, right: 24.0)
         layout.minimumInteritemSpacing = 16
         layout.minimumLineSpacing = 16
-        layout.estimatedItemSize.width = 300
-        layout.estimatedItemSize.height = 240
+        layout.estimatedItemSize.width = 184
+        layout.estimatedItemSize.height = 156
         layout.scrollDirection = .horizontal
-        
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
-        cv.register(MainBannerCollectionViewCell.self, forCellWithReuseIdentifier: "BannerCell")
+        cv.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: "HistoryCell")
+        
         return cv
+    }()
+    
+    private lazy var historyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
+        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        label.text = "Қарауды жалғастырамыз"
+        return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,16 +49,24 @@ class MainBannerTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     }
     
     func setupViews() {
-        contentView.addSubview(collectionView)
+        contentView.addSubviews(historyLabel, collectionView)
     }
     
     func setupConstraints() {
+        historyLabel.snp.makeConstraints { make in
+            make.top.equalTo(22)
+            make.leading.equalTo(24)
+            make.trailing.equalTo(-24)
+        }
+        
         collectionView.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(historyLabel.snp.bottom).offset(16)
         }
     }
     
     func setData(mainMovie: MainMovie) {
+   
         self.mainMovie = mainMovie
         
         collectionView.reloadData()
@@ -58,14 +74,16 @@ class MainBannerTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
 
 }
 
-extension MainBannerTableViewCell {
+extension HistoryTableViewCell {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mainMovie.bannerMovie.count
+        return mainMovie.movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCell", for: indexPath) as! MainBannerCollectionViewCell
-        cell.setData(bannerMovie: mainMovie.bannerMovie[indexPath.row])
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HistoryCell", for: indexPath) as! HistoryCollectionViewCell
+        
+        cell.setData(movie: mainMovie.movies[indexPath.row])
         
         return cell
     }
