@@ -7,9 +7,12 @@
 
 import UIKit
 import SnapKit
+import SVProgressHUD
+import SwiftyJSON
+import Alamofire
 
-class MovieInfoViewController: UIViewController {
-
+class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+  
    var scrollView: UIScrollView = {
        let scrollView = UIScrollView()
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
@@ -34,6 +37,7 @@ class MovieInfoViewController: UIViewController {
     private lazy var backButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(named: "backButtonArrow"), for: .normal)
+        button.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         return button
     }()
     
@@ -56,6 +60,7 @@ class MovieInfoViewController: UIViewController {
     private lazy var favoriteButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(named: "favoriteButton"), for: .normal)
+       // button.addTarget(self, action: #selector(addToFavorite), for: .touchUpInside)
         return button
     }()
     
@@ -70,6 +75,7 @@ class MovieInfoViewController: UIViewController {
     private lazy var shareButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(named: "shareButton"), for: .normal)
+        button.addTarget(self, action: #selector(shareButtonAction), for: .touchUpInside)
         return button
     }()
     
@@ -184,7 +190,7 @@ class MovieInfoViewController: UIViewController {
     private lazy var seasonsLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
-        label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
+        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
         label.text = "Бөлімдер"
         label.numberOfLines = 0
         return label
@@ -196,7 +202,7 @@ class MovieInfoViewController: UIViewController {
         button.setTitleColor(UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         button.contentHorizontalAlignment = .left
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 60.0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 48.0)
         return button
     }()
     
@@ -207,6 +213,60 @@ class MovieInfoViewController: UIViewController {
         return image
     }()
     
+    private lazy var screenshotslabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
+        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        label.text = "Скриншоттар"
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var screenshotsCollectionView: UICollectionView = {
+        
+        let layout = TopAlignedCollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24.0, bottom: 0, right: 24.0)
+        layout.minimumInteritemSpacing = 16
+        layout.minimumLineSpacing = 16
+        layout.estimatedItemSize.width = 184
+        layout.estimatedItemSize.height = 112
+        layout.scrollDirection = .horizontal
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.delegate = self
+        cv.dataSource = self
+        cv.register(ScreenshotCollectionViewCell.self, forCellWithReuseIdentifier: "ScreenshotCell")
+        
+        return cv
+    }()
+    
+    
+    private lazy var sameContentLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
+        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        label.text = "Ұқсас телехикаялар"
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    
+    private lazy var sameContentCollectionView: UICollectionView = {
+        
+        let layout = TopAlignedCollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24.0, bottom: 0, right: 24.0)
+        layout.minimumInteritemSpacing = 16
+        layout.minimumLineSpacing = 16
+        layout.estimatedItemSize.width = 112
+        layout.estimatedItemSize.height = 220
+        layout.scrollDirection = .horizontal
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.delegate = self
+        cv.dataSource = self
+        cv.register(SameContentCollectionViewCell.self, forCellWithReuseIdentifier: "SameContentCell")
+        return cv
+    }()
     
     
     var movie = Movie()
@@ -216,30 +276,62 @@ class MovieInfoViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setData()
+        downloadSimilar()
+        
+        view.backgroundColor = .white
         
         if descriptionLabel.numberOfLines > 4 {
             descriptionLabel.numberOfLines = 4
             fullDescriptionButton.setTitle("Толығырақ", for: .normal)
             descriptionGradientView.isHidden = false
         }
+        
+        if movie.movieType == "MOVIE" {
+            seasonsLabel.isHidden = true
+            seasonSeriesButton.isHidden = true
+            arrowImageView.isHidden = true
+//            seasonConstraint.priority = .defaultLow
+//            screenshotConstraint.priority = .defaultHigh
+        } else {
+
+        }
+        if movie.favorite {
+            favoriteButton.setImage(UIImage(named: "favoriteButtonSelected"), for: .normal)
+
+        } else {
+            favoriteButton.setImage(UIImage(named: "favoriteButton"), for: .normal)
+        }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
  
     
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(posterImageView, gradientView, backButton, playButton, shareButton, shareLabel, favoriteButton, favoriteLabel, movieInfoView)
-        movieInfoView.addSubviews(titleLabel, yearLabel, divideView, descriptionLabel, descriptionGradientView, fullDescriptionButton, directorLabel, producerLabel, directorValueLabel, producerValueLabel, divideView2, seasonsLabel, seasonSeriesButton, arrowImageView)
+        movieInfoView.addSubviews(titleLabel, yearLabel, divideView, descriptionLabel, descriptionGradientView, fullDescriptionButton, directorLabel, producerLabel, directorValueLabel, producerValueLabel, divideView2, seasonsLabel, seasonSeriesButton, arrowImageView, screenshotslabel, screenshotsCollectionView, sameContentLabel, sameContentCollectionView)
     }
     
     func setupConstraints() {
         scrollView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalToSuperview().offset(-60)
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(sameContentCollectionView.snp.bottom).offset(16)
         }
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.width.equalToSuperview()
+            make.edges.width.equalTo(scrollView)
+          
         }
         posterImageView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
@@ -371,6 +463,26 @@ class MovieInfoViewController: UIViewController {
             make.centerY.equalTo(seasonSeriesButton.snp.centerY)
         }
         
+        screenshotslabel.snp.makeConstraints { make in
+            make.leading.equalTo(24)
+            make.top.equalTo(seasonSeriesButton.snp.bottom).offset(32)
+        }
+
+        screenshotsCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(112)
+            make.top.equalTo(screenshotslabel.snp.bottom).offset(16)
+        }
+
+        sameContentLabel.snp.makeConstraints { make in
+            make.leading.equalTo(24)
+            make.top.equalTo(screenshotsCollectionView.snp.bottom).offset(24)
+        }
+        sameContentCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(sameContentLabel.snp.bottom).offset(16)
+            make.height.equalTo(224)
+        }
         
     }
     
@@ -386,5 +498,143 @@ class MovieInfoViewController: UIViewController {
         }
     }
     
+    @objc func shareButtonAction() {
+        let text = "\(movie.name) \n\(movie.description)"
+                let image = posterImageView.image
+                let shareAll = [text, image!] as [Any]
+                let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self.view
+                self.present(activityViewController, animated: true, completion: nil)
+    }
     
+    @objc func backButtonAction() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func addToFavorite(_ sender: Any) {
+        SVProgressHUD.setContainerView(self.view)
+        SVProgressHUD.show()
+
+        var method = HTTPMethod.post
+        if movie.favorite {
+            method = .delete
+        }
+
+        let headers: HTTPHeaders = [
+            "Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+
+        let parameters = ["movieId": movie.id]
+        AF.request(Urls.FAVORITE_URL, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseData { response in
+
+            SVProgressHUD.dismiss()
+
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print(resultString)
+            }
+
+            if response.response?.statusCode == 200 || response.response?.statusCode == 201  {
+                //let json = JSON(response.data!)
+                self.movie.favorite.toggle()
+                self.setupViews()
+
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            }
+        }
+    }
+    
+    func setData() {
+        posterImageView.sd_setImage(with: URL(string: movie.poster_link))
+        titleLabel.text = movie.name
+        yearLabel.text = "\(movie.year)"
+
+        for item in movie.genres {
+            yearLabel.text = yearLabel.text! + " • " + item.name
+        }
+
+        directorValueLabel.text = movie.director
+        producerValueLabel.text = movie.producer
+
+        seasonSeriesButton.setTitle("\(movie.seasonCount) сезон" + ", " + "\(movie.seriesCount) серия,", for: .normal)
+
+        descriptionLabel.text = movie.description
+    }
+
+    func downloadSimilar() {
+        SVProgressHUD.setContainerView(self.view)
+        SVProgressHUD.show()
+
+        let headers: HTTPHeaders = [
+            "Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+        AF.request(Urls.SIMILAR_MOVIES + String(movie.id), method: .get, headers: headers).responseData { response in
+
+            SVProgressHUD.dismiss()
+
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print(resultString)
+            }
+
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+
+                if let array = json.array {
+                    for item in array {
+                        let movie = Movie(json: item)
+                        self.similarMovies.append(movie)
+                    }
+                    self.sameContentCollectionView.reloadData()
+                } else {
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                }
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            }
+
+        }
+    }
+    
+    
+    
+    
+}
+
+
+extension MovieInfoViewController {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == screenshotsCollectionView {
+            return movie.screenshots.count
+        }
+        return similarMovies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == screenshotsCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenshotCell", for: indexPath) as! ScreenshotCollectionViewCell
+            
+            cell.setData(name: movie.screenshots[indexPath.item].name, link: movie.screenshots[indexPath.item].link)
+            
+            return cell
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SameContentCell", for: indexPath) as! SameContentCollectionViewCell
+        cell.setData(movie: similarMovies[indexPath.item])
+    
+        return cell
+    }
 }

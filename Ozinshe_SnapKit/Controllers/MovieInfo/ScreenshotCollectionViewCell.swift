@@ -1,16 +1,13 @@
 //
-//  GenreAgeCollectionViewCell.swift
+//  ScreenshotCollectionViewCell.swift
 //  Ozinshe_SnapKit
 //
-//  Created by Almat Alibekov on 23.11.2023.
+//  Created by Almat Alibekov on 28.11.2023.
 //
 
 import UIKit
-import SDWebImage
-import SnapKit
 
-class GenreAgeCollectionViewCell: UICollectionViewCell {
-    
+class ScreenshotCollectionViewCell: UICollectionViewCell {
     private lazy var posterImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.layer.cornerRadius = 8
@@ -24,7 +21,6 @@ class GenreAgeCollectionViewCell: UICollectionViewCell {
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.textAlignment = .center
-        label.numberOfLines = 2
         return label
     }()
     
@@ -56,8 +52,6 @@ class GenreAgeCollectionViewCell: UICollectionViewCell {
     
     func setData(name: String, link: String) {
         posterImageView.sd_setImage(with: URL(string: link))
-        
         nameLabel.text = name
     }
-    
 }

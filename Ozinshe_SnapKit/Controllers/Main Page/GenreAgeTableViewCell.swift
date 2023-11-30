@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol SendTheIdDelegate: AnyObject {
+    func sendID(categoryID: Int, cellType: CellType, categoryName: String)
+}
+
 class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var mainMovie = MainMovie()
+    var delegate: SendTheIdDelegate?
     
     private lazy var genreAgeNameLabel: UILabel = {
        let label = UILabel()
@@ -71,6 +76,16 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(genreAgeNameLabel.snp.bottom).offset(16)
             make.bottom.equalTo(-10)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if mainMovie.cellType == .ageCategory {
+            self.delegate?.sendID(categoryID: mainMovie.categoryAges[indexPath.row].id, cellType: .ageCategory, categoryName: mainMovie.categoryAges[indexPath.row].name)
+            
+        }
+        if mainMovie.cellType == .genre {
+            self.delegate?.sendID(categoryID: mainMovie.genres[indexPath.row].id, cellType: .genre, categoryName: mainMovie.genres[indexPath.row].name)
         }
     }
 

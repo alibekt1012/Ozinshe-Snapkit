@@ -29,7 +29,7 @@ struct Movie {
     var categories: [Category] = []
     var genres: [Genre] = []
     var favorite = false
-//    var screenshots: [Screenshot] = []
+    var screenshots: [Screenshot] = []
     
     init() {
         
@@ -107,12 +107,12 @@ struct Movie {
             favorite = temp
         }
 
-//        if let array = json["screenshots"].array {
-//            for item in array {
-//                let temp = Screenshot(json: item)
-//                screenshots.append(temp)
-//            }
-//        }
+        if let array = json["screenshots"].array {
+            for item in array {
+                let temp = Screenshot(json: item)
+                screenshots.append(temp)
+            }
+        }
         
     }
 }

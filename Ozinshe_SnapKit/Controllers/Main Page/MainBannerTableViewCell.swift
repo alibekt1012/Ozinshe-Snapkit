@@ -10,6 +10,7 @@ import UIKit
 class MainBannerTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
    
     var mainMovie = MainMovie()
+    var delegate: MovieProtocol?
     
     private lazy var collectionView: UICollectionView = {
         
@@ -69,5 +70,11 @@ extension MainBannerTableViewCell {
         
         return cell
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.movieDidSelect(movie: mainMovie.bannerMovie[indexPath.item].movie)
+    }
+
     
 }

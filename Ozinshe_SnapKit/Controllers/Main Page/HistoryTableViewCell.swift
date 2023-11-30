@@ -10,6 +10,7 @@ import UIKit
 class HistoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
     var mainMovie = MainMovie()
+    var delegate: MovieProtocol?
     
     private lazy var collectionView: UICollectionView = {
         
@@ -70,6 +71,10 @@ class HistoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
         self.mainMovie = mainMovie
         
         collectionView.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.movieDidSelect(movie: mainMovie.movies[indexPath.item])
     }
 
 }

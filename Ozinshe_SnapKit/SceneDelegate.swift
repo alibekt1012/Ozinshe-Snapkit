@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = UIWindow(windowScene: windowScene)
             let tabBar = TabBarController()
             let vc = MovieInfoViewController()
-            self.window?.rootViewController = vc
+            self.window?.rootViewController = tabBar
             self.window?.makeKeyAndVisible()
         } else {
             window = UIWindow(windowScene: windowScene)

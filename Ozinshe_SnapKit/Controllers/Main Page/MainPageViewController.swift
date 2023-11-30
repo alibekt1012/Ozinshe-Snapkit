@@ -12,8 +12,8 @@ import SwiftyJSON
 import Alamofire
 
 
-class MainPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
- 
+class MainPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MovieProtocol, SendTheIdDelegate {
+    
     var mainMovies: [MainMovie] = []
     
     private lazy var tableView: UITableView = {
@@ -313,6 +313,28 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
+    
+    func movieDidSelect(movie: Movie) {
+        let movieInfoViewController = MovieInfoViewController()
+        
+        movieInfoViewController.movie = movie
+        navigationController?.pushViewController(movieInfoViewController, animated: true)
+        
+        
+    }
+    
+    func sendID(categoryID: Int, cellType: CellType, categoryName: String) {
+        let categoryMoviesVC = CategoryTableViewController()
+        categoryMoviesVC.categoryId = categoryID
+        categoryMoviesVC.categoryName = categoryName
+        if cellType == .ageCategory {
+            categoryMoviesVC.categoryType = .ageCategoryId
+        } else {
+            categoryMoviesVC.categoryType = .genreId
+        }
+        
+        navigationController?.pushViewController(categoryMoviesVC, animated: true)
+    }
 }
 
 
@@ -343,30 +365,34 @@ extension MainPageViewController {
         
         if mainMovies[indexPath.row].cellType == .mainBanner {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainBannerCell") as! MainBannerTableViewCell
+            cell.delegate = self
             cell.setData(mainMovie: mainMovies[indexPath.row])
             return cell
         }
         
         if mainMovies[indexPath.row].cellType == .userHistory {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell") as! HistoryTableViewCell
+            cell.delegate = self
             cell.setData(mainMovie: mainMovies[indexPath.row])
             return cell
         }
         
         if mainMovies[indexPath.row].cellType == .genre {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GenreAgeCell") as! GenreAgeTableViewCell
+            cell.delegate = self
             cell.setData(mainMovie: mainMovies[indexPath.row])
             return cell
         }
         
         if mainMovies[indexPath.row].cellType == .ageCategory {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GenreAgeCell") as! GenreAgeTableViewCell
+            cell.delegate = self
             cell.setData(mainMovie: mainMovies[indexPath.row])
             return cell
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
-        
+        cell.delegate = self
         cell.setData(mainMovie: mainMovies[indexPath.row])
         return cell
     }

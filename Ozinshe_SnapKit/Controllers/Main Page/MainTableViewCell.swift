@@ -41,6 +41,7 @@ class TopAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 class MainTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
    
     var mainMovie = MainMovie()
+    var delegate: MovieProtocol?
     
     private lazy var collectionView: UICollectionView = {
         
@@ -128,6 +129,10 @@ extension MainTableViewCell {
         cell.setData(movie: mainMovie.movies[indexPath.item])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.movieDidSelect(movie: mainMovie.movies[indexPath.item])
     }
     
 }
