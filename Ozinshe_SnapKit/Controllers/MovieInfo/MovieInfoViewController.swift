@@ -121,8 +121,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
        let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
         label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
-        label.text = "Шытырман оқиғалы мультсериал Елбасының «Ұлы даланың жеті қыры» бағдарламасы аясында жүзеге асырылған. Мақалада қызғалдақтардың отаны Қазақстан екені айтылады. Ал, жоба қызғалдақтардың отаны – Алатау баурайы екенін анимация тілінде дәлелдей түседі. Шытырман оқиғалы мультсериал Елбасының «Ұлы даланың жеті қыры» бағдарламасы аясында жүзеге асырылған. Мақалада қызғалдақтардың отаны Қазақстан екені айтылады. Ал, жоба қызғалдақтардың отаны – Алатау баурайы екенін анимация тілінде дәлелдей түседі.Шытырман оқиғалы мультсериал Елбасының «Ұлы даланың жеті қыры» бағдарламасы аясында жүзеге асырылған. Мақалада қызғалдақтардың отаны Қазақстан екені айтылады. Ал, жоба қызғалдақтардың отаны – Алатау баурайы екенін анимация тілінде дәлелдей түседі.Шытырман оқиғалы мультсериал Елбасының «Ұлы даланың жеті қыры» бағдарламасы аясында жүзеге асырылған. Мақалада қызғалдақтардың отаны Қазақстан екені айтылады. Ал, жоба қызғалдақтардың отаны – Алатау баурайы екенін анимация тілінде дәлелдей түседі. "
-        label.numberOfLines = 30
+        label.numberOfLines = 4
         return label
     }()
     
@@ -202,7 +201,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         button.setTitleColor(UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         button.contentHorizontalAlignment = .left
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 48.0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -48.0, bottom: 0, right: 0)
         return button
     }()
     
@@ -277,22 +276,19 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         setupViews()
         setupConstraints()
         setData()
-        downloadSimilar()
         
         view.backgroundColor = .white
-        
-        if descriptionLabel.numberOfLines > 4 {
-            descriptionLabel.numberOfLines = 4
-            fullDescriptionButton.setTitle("Толығырақ", for: .normal)
-            descriptionGradientView.isHidden = false
-        }
-        
+  
         if movie.movieType == "MOVIE" {
             seasonsLabel.isHidden = true
             seasonSeriesButton.isHidden = true
             arrowImageView.isHidden = true
-//            seasonConstraint.priority = .defaultLow
-//            screenshotConstraint.priority = .defaultHigh
+            
+            screenshotslabel.snp.makeConstraints { make in
+                make.leading.equalTo(24)
+                make.top.equalTo(divideView2.snp.bottom).offset(32)
+            }
+            
         } else {
 
         }
@@ -302,6 +298,16 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         } else {
             favoriteButton.setImage(UIImage(named: "favoriteButton"), for: .normal)
         }
+       
+        if descriptionLabel.actualNumberOfLines < 5 {
+            fullDescriptionButton.isHidden = true
+            descriptionGradientView.isHidden = true
+        } else {
+            fullDescriptionButton.isHidden = false
+            descriptionGradientView.isHidden = false
+        }
+          
+        downloadSimilar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
