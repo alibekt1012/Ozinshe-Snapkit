@@ -54,6 +54,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
     private lazy var playButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(named: "playButton"), for: .normal)
+        button.addTarget(self, action: #selector(playMovie), for: .touchUpInside)
         return button
     }()
     
@@ -202,6 +203,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         button.contentHorizontalAlignment = .left
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -48.0, bottom: 0, right: 0)
+        
         return button
     }()
     
@@ -555,6 +557,24 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
                 SVProgressHUD.showError(withStatus: "\(ErrorString)")
             }
         }
+    }
+    
+    @objc func playMovie() {
+        if movie.movieType == "MOVIE" {
+            let vc = MoviePlayerViewController()
+            
+            //vc.video_link = movie.video_link
+            navigationController?.show(vc, sender: self)
+            
+        } else {
+            let seasonVC = SeasonSeriesViewController()
+            
+            seasonVC.movie = movie
+            seasonVC.video_link = movie.video_link
+            seasonVC.hidesBottomBarWhenPushed = true
+            navigationController?.show(seasonVC, sender: self)
+        }
+        
     }
     
     func setData() {

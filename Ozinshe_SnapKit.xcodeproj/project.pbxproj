@@ -29,6 +29,10 @@
 		1D60392D2B15B2BF006DFDDB /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D60392C2B15B2BF006DFDDB /* Season.swift */; };
 		1D60392F2B15B335006DFDDB /* ScreenshotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D60392E2B15B335006DFDDB /* ScreenshotCollectionViewCell.swift */; };
 		1D6039312B15B343006DFDDB /* SameContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6039302B15B343006DFDDB /* SameContentCollectionViewCell.swift */; };
+		1D6039352B18C173006DFDDB /* SeasonSeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6039342B18C173006DFDDB /* SeasonSeriesViewController.swift */; };
+		1D6039372B18C195006DFDDB /* SeasonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6039362B18C195006DFDDB /* SeasonCollectionViewCell.swift */; };
+		1D6039392B18C1B0006DFDDB /* EpisodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6039382B18C1B0006DFDDB /* EpisodeTableViewCell.swift */; };
+		1D60393B2B18CBE8006DFDDB /* MoviePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D60393A2B18CBE8006DFDDB /* MoviePlayerViewController.swift */; };
 		1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */; };
 		1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */; };
 		1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E61F32AF89ABC004F4FEE /* ViewController.swift */; };
@@ -87,6 +91,10 @@
 		1D60392C2B15B2BF006DFDDB /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Season.swift; path = Extensions/Season.swift; sourceTree = SOURCE_ROOT; };
 		1D60392E2B15B335006DFDDB /* ScreenshotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D6039302B15B343006DFDDB /* SameContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		1D6039342B18C173006DFDDB /* SeasonSeriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonSeriesViewController.swift; sourceTree = "<group>"; };
+		1D6039362B18C195006DFDDB /* SeasonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonCollectionViewCell.swift; sourceTree = "<group>"; };
+		1D6039382B18C1B0006DFDDB /* EpisodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewCell.swift; sourceTree = "<group>"; };
+		1D60393A2B18CBE8006DFDDB /* MoviePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayerViewController.swift; sourceTree = "<group>"; };
 		1D6E61EC2AF89ABC004F4FEE /* Ozinshe_SnapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ozinshe_SnapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6E61EF2AF89ABC004F4FEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D6E61F12AF89ABC004F4FEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +158,24 @@
 			path = MovieInfo;
 			sourceTree = "<group>";
 		};
+		1D6039322B18C13C006DFDDB /* MoviePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				1D60393A2B18CBE8006DFDDB /* MoviePlayerViewController.swift */,
+			);
+			path = MoviePlayer;
+			sourceTree = "<group>";
+		};
+		1D6039332B18C148006DFDDB /* Seasons and Series */ = {
+			isa = PBXGroup;
+			children = (
+				1D6039342B18C173006DFDDB /* SeasonSeriesViewController.swift */,
+				1D6039362B18C195006DFDDB /* SeasonCollectionViewCell.swift */,
+				1D6039382B18C1B0006DFDDB /* EpisodeTableViewCell.swift */,
+			);
+			path = "Seasons and Series";
+			sourceTree = "<group>";
+		};
 		1D6E61E32AF89ABC004F4FEE = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +217,8 @@
 		1D6E62032AF8A630004F4FEE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1D6039332B18C148006DFDDB /* Seasons and Series */,
+				1D6039322B18C13C006DFDDB /* MoviePlayer */,
 				1D0A4E6F2B0F33940007ABB2 /* MovieInfo */,
 				1D8ADDA82AFCE311009D434F /* Sign In_Up */,
 				1D8ADDA72AFCE2FE009D434F /* Favorites */,
@@ -459,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6039352B18C173006DFDDB /* SeasonSeriesViewController.swift in Sources */,
 				1D0A4E6A2B0DDD3D0007ABB2 /* HistoryCollectionViewCell.swift in Sources */,
 				1D0A4E662B0B67150007ABB2 /* MainBannerCollectionViewCell.swift in Sources */,
 				1D8ADDAA2AFCE340009D434F /* SignInViewController.swift in Sources */,
@@ -480,6 +509,7 @@
 				1D8ADDB12AFDE699009D434F /* Urls.swift in Sources */,
 				1D60392F2B15B335006DFDDB /* ScreenshotCollectionViewCell.swift in Sources */,
 				1D8ADDBA2AFE376F009D434F /* Profile.swift in Sources */,
+				1D6039392B18C1B0006DFDDB /* EpisodeTableViewCell.swift in Sources */,
 				1D6E61F42AF89ABC004F4FEE /* ViewController.swift in Sources */,
 				1D6E620F2AF8A7DF004F4FEE /* TabBarController.swift in Sources */,
 				1D0A4E682B0DDD240007ABB2 /* HistoryTableViewCell.swift in Sources */,
@@ -497,8 +527,10 @@
 				1D0A4E5E2B0B44A10007ABB2 /* MainBannerTableViewCell.swift in Sources */,
 				1D09FBFF2B064B2D0042DC57 /* CategoryTableViewController.swift in Sources */,
 				1D6E62212AFB4C3E004F4FEE /* LanguageTableViewCell.swift in Sources */,
+				1D60393B2B18CBE8006DFDDB /* MoviePlayerViewController.swift in Sources */,
 				1D6E61F02AF89ABC004F4FEE /* AppDelegate.swift in Sources */,
 				1D8ADDA12AFCCD35009D434F /* ChangePasswordViewController.swift in Sources */,
+				1D6039372B18C195006DFDDB /* SeasonCollectionViewCell.swift in Sources */,
 				1D6E62172AF8AD0A004F4FEE /* ProfileViewController.swift in Sources */,
 				1D6E61F22AF89ABC004F4FEE /* SceneDelegate.swift in Sources */,
 				1D0A4E732B1091520007ABB2 /* Gradient.swift in Sources */,
